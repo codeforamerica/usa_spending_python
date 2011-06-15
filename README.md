@@ -19,7 +19,16 @@ Usage
     ... c.search(state='CA', first_year=2008, last_year=2010)
 
     >>> # Search for contracts not competed on.
-    ... c.search(state='NY', competition='NA')
+    ... c.search(state='NY', competition='not competed')
+
+    >>> # Search for contracts not available for competition.
+    ... c.search(state='NY', competition='N/A')
+
+    >>> # Find the number of contracts matching your criteria.
+    ... data = c.search(zipcode=12345)
+    >>> found = data.response.result.numFound
+    >>> print found
+    6789
 
 
 Copyright
