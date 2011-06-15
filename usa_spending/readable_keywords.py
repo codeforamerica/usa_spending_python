@@ -45,24 +45,21 @@ detail_args = {
 }
 
 competition_args = {
-    'f': 'F',
     'competed SAP': 'F',
-    'g': 'G',
+    'competed under SAP': 'F',
     'not competed SAP': 'G',
+    'not competed under SAP': 'G',
     'non-competitive delivery order': 'NDO',
-    'ndo': 'NDO',
     'not competed': 'C',
-    'c': 'C',
     'na': 'B',
+    'n/a': 'B',
     'NA': 'B',
+    'N/A': 'B',
     'not available': 'B',
     'not available for competition': 'B',
-    'b': 'B',
     'full': 'A',
     'full and open': 'A',
-    'a': 'A',
     'competitive delivery order': 'CDO',
-    'cdo': 'CDO',
 }
 
 sort_by_args = {
