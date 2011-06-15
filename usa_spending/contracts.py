@@ -4,49 +4,29 @@
 
 import re
 
-from api import API
-from readable_keywords import (keywords, detail_args,
-                               competition_args, sort_by_args)
+from government_api import GovernmentAPI
+from readable_keywords import competition_args
 
 
-class Contracts(API):
+class Contracts(GovernmentAPI):
     """Python wrapper for USA Spending's Federal Contracts API."""
 
     def __init__(self):
         super(Contracts, self).__init__()
-        self.base_url = 'http://usaspending.gov'
-        self.output_format = 'xml'
-        self.required_params = None
-        self.keywords = keywords
-        self._detail_args = detail_args
         self._competition_args = competition_args
-        self._sort_by_args = sort_by_args
         self._re_competition = re.compile('extent_comp.+|compet.+')
-        self._re_sort_by = re.compile('sort.+')
 
-    def search(self, detail='b', **kwargs):
+    def search(self, detail='b', **kwds):
         """Search the USA Spending Federal Contracts API."""
-        return self._correct_keywords(detail=detail, **kwargs)
+        kwds.update({'detail': detail})
+        kwds = self._correct_keywords(**kwds)
+        return self._contract_keywords(**kwds)
 
-    def _correct_keywords(self, **kwargs):
-        """
-        Internal method to resolve human readable keywords into keywords
-        used with the Federal Contracts API.
-        """
-        if kwargs['detail'] in self._detail_args:
-            data = kwargs.pop('detail')
-            kwargs['detail'] = self._detail_args[data]
-        for key in kwargs:
+    def _contract_keywords(self, **kwds):
+        """Internal method to resolve Federal Contract specific keywords."""
+        for key in kwds:
             if self._re_competition.match(key):
-                data = kwargs.pop(key)
-                kwargs['extent_compete'] = self._competition_args[data]
-            elif self._re_sort_by.match(key):
-                data = kwargs.pop(key)
-                kwargs['sortby'] = self._sort_by_args[data]
-            elif key in self.keywords:
-                # We need to go from human readable to the
-                # correct search_type parameter name.
-                correct_name = self.keywords[key]
-                data = kwargs.pop(key)
-                kwargs.update({correct_name: data})
-        return self.call_api('fpds/fpds.php', **kwargs)
+                data = kwds.pop(key)
+                formatted_value = self._competition_args[data].upper()
+                kwds['extent_compete'] = formatted_value
+        return self.call_api('fpds/fpds.php', **kwds)
