@@ -6,7 +6,7 @@ import unittest
 
 from mock import Mock
 
-from usa_spending import GovernmentAPI, Contracts, Assistance
+from usa_spending import GovernmentAPI, Contracts, Assistance, Subawards
 from usa_spending.api import api
 
 
@@ -154,6 +154,33 @@ class TestAssistanceSearchMethod(unittest.TestCase):
         Assistance().search(recipient_category='non-profit')
         expected_url = ('http://usaspending.gov/faads/faads.php?'
                         'detail=b&recip_cat_type=n')
+        api.urlopen.assert_called_with(expected_url)
+
+
+class TestSubawardsInit(unittest.TestCase):
+
+    def test_Subawards_init(self):
+        sub = Subawards()
+        self.assertEquals(sub.base_url, 'http://usaspending.gov')
+        self.assertEquals(sub.output_format, 'xml')
+
+
+class TestSubawardsSearchMethod(unittest.TestCase):
+
+    def setUp(self):
+        api.urlopen = Mock()
+        api.xml2dict = Mock()
+
+    def test_simple_search_method_call(self):
+        Subawards().search(year=2008)
+        expected_url = ('http://usaspending.gov/fsrs/fsrs.php?'
+                        'detail=b&fiscal_year=2008')
+        api.urlopen.assert_called_with(expected_url)
+
+    def test_search_method_replaces_state_keyword(self):
+        Subawards().search(state='TX')
+        expected_url = ('http://usaspending.gov/fsrs/fsrs.php?'
+                        'subawardee_state_code=TX&detail=b')
         api.urlopen.assert_called_with(expected_url)
 
 
