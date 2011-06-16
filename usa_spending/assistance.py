@@ -47,5 +47,4 @@ class Assistance(GovernmentAPI):
                 data = kwds[key]
                 formatted_value = self._category_args[data]
                 kwds[key] = formatted_value
-                pass
         return self.call_api('faads/faads.php', **kwds)
