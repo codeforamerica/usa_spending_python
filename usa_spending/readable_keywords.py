@@ -33,6 +33,7 @@ keywords = {
     'recipient_zip_code': 'recipient_zip',
     'sort_by': 'sortby',
     'state_code': 'stateCode',
+    'subawardee_state': 'subawardee_state_code',
     'vendor_country_code': 'vendorCountryCode',
     'year': 'fiscal_year',
     'zipcode': 'ZIPCode',
