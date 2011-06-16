@@ -29,7 +29,7 @@ class GovernmentAPI(API):
         Internal method to resolve human readable keywords into keywords
         used with the Federal Contracts API.
         """
-        if kwds['detail'] in self._detail_args:
+        if 'detail' in kwds and kwds['detail'] in self._detail_args:
             data = kwds.pop('detail')
             formatted_value = self._detail_args[data]
             kwds['detail'] = formatted_value

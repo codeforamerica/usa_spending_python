@@ -25,6 +25,12 @@ keywords = {
     'place_of_performance_country_code': 'placeOfPerformanceCountryCode',
     'pop_cc': 'placeOfPerformanceCountryCode',
     'piid': 'PIID',
+    'recipient_category': 'recip_cat_type',
+    'recipient_city': 'recipient_city_name',
+    'recipient_county': 'recipient_county_name',
+    'recipient_state': 'state',
+    'recipient_zipcode': 'recipient_zip',
+    'recipient_zip_code': 'recipient_zip',
     'sort_by': 'sortby',
     'state_code': 'stateCode',
     'vendor_country_code': 'vendorCountryCode',
@@ -69,4 +75,16 @@ sort_by_args = {
     'product': 'p',
     'service': 'p',
     'date': 'd',
+}
+
+category_args = {
+    'for profit': 'f',
+    'government': 'g',
+    'higher education': 'h',
+    'individuals': 'i',
+    'nonprofit': 'n',
+    'non-profit': 'n',
+    'nonprofits': 'n',
+    'non-profits': 'n',
+    'other': 'o'
 }
