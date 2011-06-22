@@ -1,0 +1,3 @@
+[submodule "usa_spending/api"]
+	path = usa_spending/api
+	url = git@github.com:codeforamerica/Python-API-Module.git
