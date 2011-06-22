@@ -16,7 +16,6 @@ class TestGovernmentAPI(unittest.TestCase):
         gov = GovernmentAPI()
         self.assertEquals(gov.base_url, 'http://usaspending.gov')
         self.assertEquals(gov.output_format, 'xml')
-        self.assertFalse(gov.api_key)
         self.assertFalse(gov.required_params)
 
 class TestGovernmentAPICorrectKeywordsMethod(unittest.TestCase):
