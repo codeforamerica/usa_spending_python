@@ -76,7 +76,7 @@ See LICENSE for details.
 """
 
 setup(name="usa_spending",
-      version="1.0",
+      version="1.1",
       description=("Python API for the numerous APIs available through "
                    "USA Spending."),
       long_description=long_description,
@@ -85,7 +85,8 @@ setup(name="usa_spending",
       author_email="zach@codeforamerica.org",
       url="https://github.com/codeforamerica/usa_spending_python",
       license="BSD",
-      packages=["usa_spending"],
+      packages=["usa_spending", "usa_spending.api",
+                "usa_spending.api.xml2dict"],
       classifiers=['Development Status :: 5 - Production/Stable',
                    'Intended Audience :: Developers',
                    'Natural Language :: English',
